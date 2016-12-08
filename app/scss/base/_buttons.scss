@@ -1,0 +1,83 @@
+// Buttons
+.btn {
+  font-size: 9pt;
+  font-weight: 500;
+  letter-spacing: $letter-spacing;
+  text-transform: uppercase;
+  border: 1px solid #cacaca;
+  background: whitesmoke;
+  border-radius: 7px;
+  padding: 10px 15px;
+
+  &.btn-popup-trigger {
+    height: 48px;
+    padding-bottom: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 20%;
+    z-index: 100;
+
+    .icon {
+      color: $grey04;
+      font-size: 18pt;
+    }
+  }
+
+  &.warning {
+    background: red;
+    color: white;
+  }
+}
+
+// UNIVERSAL HIERARCHY
+.btn-primary {
+
+  &.btn-stacked {
+
+    h4 {
+      color: $white;
+      font-size: 13pt;
+      line-height: 10pt;
+      margin: 5px 0 2px;
+    }
+
+    span {
+      display: block;
+      font-size: 6.5pt;
+      line-height: 11pt;
+    }
+  }
+}
+
+.btn-secondary {
+  color: $black;
+}
+
+.btn-univeral {
+  color: $grey04;
+}
+
+.btn-icon-right {
+
+  .ion-chevron-right {
+    position: absolute;
+    right: 12px;
+
+    &:before {
+      font-size: 11pt;
+    }
+  }
+}
+
+.btn-icon-left {
+
+  .ion-chevron-left {
+    left: 12px;
+    position: absolute;
+
+    &:before {
+      font-size: 11pt;
+    }
+  }
+}

@@ -1,0 +1,19 @@
+//
+// Preloader Icons
+//
+
+// pre-login
+.loading-wrap {
+
+  .logo {
+    background: url('../img/logo_dark.png');
+    background-size: 100%;
+    height: 34px;
+    left: 50%;
+    margin: 0 0 0 -115px;
+    position: absolute;
+    top: 20%;
+    width: 230px;
+    z-index: 10;
+  }
+}

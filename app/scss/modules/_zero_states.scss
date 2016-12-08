@@ -1,0 +1,27 @@
+// Zero States Styling
+zero-state {
+  background: transparent;
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+
+  .zero-state-graphic {
+    background: $semigrey;
+    border-bottom: 1px solid transparentize($black, .98);
+    box-shadow: inset 0 -40px 190px -90px transparentize($black, .7);
+    height: 55vh;
+    margin: 20px 0 0;
+    overflow: hidden;
+    position: relative;
+  }
+
+  img {
+    bottom: -50px;
+    flex: 1 1 auto;
+    margin: 0 10%;
+    position: absolute;
+    width: auto;
+  }
+}

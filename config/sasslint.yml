@@ -1,0 +1,15 @@
+#########################
+## Sass Lint Config
+#########################
+options:
+  merge-default-rules: true
+files:
+  ignore:
+    - 'sass/vendor/**/*.*'
+# Rule Configuration
+rules:
+  nesting-depth: 4
+  indentation:
+    - 2
+    -
+      size: 2

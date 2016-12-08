@@ -1,0 +1,119 @@
+///
+// Table Card
+//
+$white:       #ffffff;
+$green:       #0c9135;
+$grey:        #c6d2da;
+$darkgrey:    #2a2d2e;
+$side-gutters: 12px !default;
+
+table-cards,
+.table-cards {
+  display: flex;
+  flex-direction: column;
+  margin: $side-gutters + 3px auto;
+  width: calc(100% - #{$side-gutters * 2});
+
+  &.collapsed {
+    display: none;
+  }
+}
+
+table-card,
+.table-card {
+  background: $white;
+  border-radius: 4px;
+  border: 1px solid rgba(0,0,0,0.05);
+  display: flex;
+  flex: 1 1 auto;
+  margin-bottom: 2px;
+  overflow: hidden;
+
+  status,
+  .status {
+    background: $grey;
+    content: '';
+    max-width: 40px;
+    min-width: 40px;
+    position: relative;
+
+    &[active=true] {
+      background: $green;
+    }
+  }
+
+  aside {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    padding: 7px 12px;
+
+    &.actions {
+      align-items: flex-end;
+      justify-content: center;
+    }
+
+    &+aside {
+      max-width: 35%;
+    }
+  }
+
+  h2,
+  h3,
+  h4 {
+    margin: 0;
+  }
+
+  h2 {
+    font-weight: 300;
+  }
+
+  h3,
+  h4 {
+    color: $darkgrey;
+    font-weight: 500;
+  }
+
+  h4 {
+    display: inline-block;
+    vertical-align: top;
+    margin-right: 15px;
+  }
+
+  label {
+    font-size: 70%;
+    opacity: 0.7;
+    text-transform: uppercase;
+  }
+
+  &.has-subcards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    .table-cards {
+      margin: 40px 12px;
+      width: 100%;
+    }
+  }
+
+  &.sub-card {
+
+    .status {
+      display: flex;
+      max-width: 150px;
+      min-width: 150px;
+
+      a {
+        margin: auto;
+      }
+
+      small {
+        color: #ffffff;
+        margin: auto;
+        text-transform: uppercase;
+        text-align: center;
+      }
+    }
+  }
+}

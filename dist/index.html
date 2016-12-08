@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no, width=device-width">
+  <title>App Status</title>
+  <link href="css/app.min.css" rel="stylesheet">
+  <link rel="icon" href="favicon.ico">
+  <script src="libs/angular.min.js"></script>
+  <script src="js/app.js"></script>
+</head>
+<body ng-controller="MainCtrl">
+  <header>
+    <div class="logo">
+      <img src="assets/logo_dark.png" width="220" alt="">
+    </div>
+  </header>
+  <alerts></alerts>
+
+  <section ng-repeat="product in data">
+    <h1>{{product.name}}</h1>
+    <div class="table-cards" ng-repeat="env in product.envs">
+      <h3>{{env.name}}</h3>
+      <div class="table-card" ng-repeat="device in env.devices">
+        <!-- <div active="false" class="status"></div> -->
+        <aside>
+          <h2>{{device.name}}</h2>
+          <h4><label>Version: </label>{{device.version}}</h4>
+          <h4><label>Message: </label>{{device.message}}</h4>
+          <h4><label>Timestamp: </label>{{device.timestamp | date}}</h4>
+        </aside>
+        <!-- <aside> -->
+          <!-- <h2>Statistics</h2> -->
+          <!-- <h4><label>EVENTS: </label>{{item.eventsTotal}}</h4> -->
+          <!-- <h4><label>STORIES: </label>{{item.storiesTotal}}</h4> -->
+        <!-- </aside> -->
+      </div>
+    </div>
+  </section>
+
+  <!-- <section ng-show="activeTab == 'events'">
+    <div class="table-cards">
+      <div class="table-card has-subcards" ng-repeat="item in events">
+        <aside>
+          <h2>{{item.name}} <small>({{item.id}})</small></h2>
+          <h4><label>Location: </label>{{item.location}}</h4>
+          <h4><label>Start Date: </label>{{item.startAt | date:'medium'}}</h4>
+        </aside>
+        <aside>
+          <h2>Statistics</h2>
+          <h4><label>RSVPS: </label>{{item.rsvpsTotal}}</h4>
+          <h4><label>STORIES: </label>{{item.storiesTotal}}</h4>
+        </aside>
+        <aside class="actions">
+          <button ng-click="toggleItem(item)" class="btn">Toggle Details</button>
+        </aside>
+        <div class="table-cards" ng-class="{ collapsed: item.collapsed }" ng-if="item.stories">
+          <div class="table-card sub-card" ng-repeat="story in item.stories">
+            <div active="false" class="status">
+              <a ng-href="{{story.image}}">
+                <img height="80px" ng-src="{{story.image}}">
+              </a>
+            </div>
+            <aside>
+              <h2>{{story.title}}</h2>
+              <h4>{{story.timestamp | date:'medium'}}</h4>
+            </aside>
+            <aside>
+              <h2>{{story.user.fullname}}</h2>
+              <h4><label>id: </label>{{story.user.id}}</h4>
+              <h4><label>Email: </label><a ng-href="mailto:{{story.user.email}}" target="_blank">{{story.user.email}}</a></h4>
+            </aside>
+            <aside class="actions">
+              <button ng-if="story.isPublic == true || story.isPublic == 'true'" class="btn">Public</button>
+              <button ng-if="story.isPublic == false || story.isPublic == 'false'" class="btn" ng-class="{ warning: story.isPublic == false || story.isPublic == 'false' }">Private</button>
+            </aside>
+          </div>
+        </div>
+        <div class="table-cards" ng-class="{ collapsed: item.collapsed }" ng-if="item.rsvps">
+          <div class="table-card sub-card" ng-repeat="rsvp in item.rsvps">
+            <div active="true" class="status">
+              <small>{{(rsvp.fullname.substring(0,2))}}</small>
+            </div>
+            <aside>
+              <h2>{{rsvp.fullname}} <label>({{rsvp.username}})</label></h2>
+              <h4><label>Zip: </label>{{rsvp.zip}}</h4>
+              <h4><label>Email: </label><a ng-href="mailto:{{rsvp.email}}" target="_blank">{{rsvp.email}}</a></h4>
+            </aside>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section> -->
+
+  
+<script type="text/ng-template" id="templates/loading.html">
+<div class="loading">Loading...</div> 
+</script>
+
+</body>
+</html>

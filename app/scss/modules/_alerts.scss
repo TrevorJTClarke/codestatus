@@ -1,0 +1,83 @@
+// alerts
+alerts {
+  @include translate3d;
+  @include transition(margin-top 220ms ease-in-out 40ms);
+  background: darken($info, 20%);
+  color: $semigrey;
+  display: block;
+  height: 64px;
+  left: 0;
+  margin-top: -100px;
+  min-height: 64px;
+  padding: 10px 0 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 999;
+
+  &.alert-active {
+    margin-top: 0;
+  }
+
+  &.error {
+    background: darken($error, 20%);
+  }
+
+  &.success {
+    background: darken($success, 20%);
+  }
+
+  .alert-icon {
+    display: inline-block;
+    height: 36px;
+    margin: 12px 0 0 10px;
+    position: relative;
+    width: 36px;
+    z-index: 80;
+
+    .icon {
+      display: block;
+      font-size: 24pt;
+      text-align: center;
+      width: 100%;
+    }
+  }
+
+  .alert-msg {
+    display: inline-block;
+    margin: 10px 0 0 10px;
+    position: relative;
+    vertical-align: top;
+
+    h3 {
+      color: $white;
+      font-size: 17px;
+      line-height: 19px;
+      margin: 0;
+    }
+
+    p {
+      line-height: 17px;
+      margin: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      width: 200px;
+      word-wrap: break-word;
+    }
+  }
+
+  .alert-action {
+    display: inline-block;
+    float: right;
+    font-size: 21pt;
+    line-height: 24pt;
+    padding: 10px 15px 5px;
+    position: relative;
+    vertical-align: top;
+
+    .ion-close-round {
+      font-size: 16pt;
+    }
+  }
+}
