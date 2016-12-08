@@ -27,10 +27,14 @@
     "html": "npm run html:templates",
     "test": "echo \"Do you even test bro?\"",
     "build": "npm version patch --no-git-tag-version",
-    "start": "node server.js"
+    "start": "node index.js"
   },
   "dependencies": {
-    "glob": "^7.0.3"
+    "express": "^4.14.0",
+    "firebase": "^3.6.3",
+    "glob": "^7.0.3",
+    "passport": "^0.3.2",
+    "passport-github": "^1.1.0"
   },
   "devDependencies": {
     "autoprefixer": "^6.3.6",
