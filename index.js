@@ -32,6 +32,7 @@ passport.use(new GitHubStrategy({
   function(accessToken, refreshToken, profile, cb) {
     // console.log('accessToken, refreshToken, ', accessToken, refreshToken)
     console.log('GITHUB:', profile._json)
+    // TODO: Add under the 'req.headers['x-codestatus-key']' account
     database.ref('users/' + profile.id).set({
       id: profile.id,
       fullName: profile.displayName,
@@ -55,6 +56,20 @@ app.get('/auth/github/callback',
     // Successful authentication, redirect home.
     res.redirect('/');
   })
+
+app.post('/:project/:env', (req, res) => {
+  // verify if it has required headers
+  if (!req.headers || !req.headers['x-codestatus-key']) return;
+  console.log('x-codestatus-key', req.headers['x-codestatus-key'])
+
+  console.log('req.headers', req.headers);
+  console.log('req.params', req.params);
+  console.log('req.body', req.body);
+
+  database.ref(`${req.headers['x-codestatus-key']}/projects/${req.params.project}/${req.params.env}`).set(req.body)
+  res.end();
+})
+
 
 app.set('port', process.env.PORT || 2345);
 http.createServer(app).listen(app.get('port'), function(){
