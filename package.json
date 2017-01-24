@@ -10,7 +10,7 @@
   "scripts": {
     "postinstall": "echo \"Welcome Friend! :)\"",
     "dev": "npm run html && npm run css && npm run js",
-    "dev:watch": "parallelshell \"node server.js\" \"npm run css:watch\" \"npm run html:watch\" \"npm run js:watch\"",
+    "dev:watch": "parallelshell \"node index.js\" \"npm run css:watch\" \"npm run html:watch\" \"npm run js:watch\"",
     "css:lint": "sass-lint 'app/scss/**/*.scss' -v",
     "css:compile": "node-sass --output-style compressed --source-comments false --include-path scss app/scss/app.scss dist/css/app.css",
     "css:autoprefixer": "postcss -u autoprefixer -r dist/css/app.css",
