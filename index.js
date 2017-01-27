@@ -5,6 +5,7 @@ var express =       require('express')
     , fs =          require("fs")
     , pkg = require('./package.json')
     , Headers = require('./server/headers')
+    , Body = require('./server/body')
     , config = require('./config/serverConfig.json')
     , firebase = require('firebase')
     ;
@@ -16,26 +17,55 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 app.use(express.static(__dirname + '/dist/'));
 
+// Im lazy:
+var errors = {
+  0: 'Invalid Authentication',
+  1: 'Invalid Headers',
+  2: 'Invalid Parameters',
+  3: 'Invalid Body',
+  4: 'Missing Fields',
+  5: 'Request Failed'
+}
+
 // Returns health data only
 app.get('/health', (req, res) => {
   // Health Check
-  res.send('Ok');
+  res.json({ status: '😎' });
 })
 
 // The endpoint for all updates
 app.post('/:project/:env', (req, res) => {
   var validHeaders = Headers.isValid(req.headers)
-  console.log('validHeaders', validHeaders)
+  var validBody = Body.isValid(req.body)
+  var formatted = Body.format(req.body)
 
-  // TODO: Setup error handler
   // verify if it has required headers
-  if (!validHeaders) res.end(); return;
-  // console.log('x-codestatus-key', req.headers['x-codestatus-key'])
-  // console.log('req.params', req.params);
-  // console.log('req.body', req.body);
+  if (!validHeaders) {
+    res.json({ status: 401, error: errors[1] });
+    return;
+  }
 
-  // database.ref(`${req.headers['x-codestatus-key']}/projects/${req.params.project}/${req.params.env}`).set(req.body)
-  res.end();
+  // body validation
+  if (!validBody) {
+    res.json({ status: 403, error: errors[3] });
+    return;
+  }
+
+  // Test for valid params
+  if (!req.headers['x-codestatus-key'] || !req.params.project || req.params.project.length < 3 || !req.params.env || req.params.env.length < 1) {
+    res.json({ status: 403, error: errors[2] });
+    return;
+  }
+
+  // final url
+  var url = `${req.headers['x-codestatus-key']}/projects/${req.params.project}/${req.params.env}`
+
+  database.ref(url).set(formatted)
+    .then(() => {
+      res.json({ status: '😎', data: formatted, timestamp: (+new Date()) })
+    }, (err) => {
+      res.json({ status: 501, error: errors[5], reason: err })
+    })
 })
 
 app.all('/*', (req, res) => {
